@@ -28,12 +28,12 @@ plt.style.use('seaborn-v0_8-darkgrid')
 # Streamlit config
 st.set_page_config(page_title="Amazon Customer Analytics", layout="wide")
 
-# Load main data function with caching
+# Load main data 
 @st.cache_data
 def load_data():
     df = pd.read_csv('amazon.csv')
     
-    # Data cleaning (same as original)
+    # Data cleaning 
     cols_to_drop = ['about_product', 'review_title', 'review_content', 'img_link',
                     'product_link', 'user_name', 'review_id']
     df = df.drop(columns=cols_to_drop, errors='ignore')
@@ -68,7 +68,7 @@ def calculate_rfm(df):
 
 # Clustering function with error handling for association rules
 @st.cache_data
-def perform_analysis(df, n_clusters=4, min_support=0.001):  # Lower default min_support
+def perform_analysis(df, n_clusters=4, min_support=0.001):  
     # RFM calculation
     rfm = calculate_rfm(df)
     
